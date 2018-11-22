@@ -11,7 +11,8 @@
 	background:black;
 	/*자식 요소가 float으로 떠버리면, 부모에 반드시 overflow 속성
 	을 적용하여 빈자리에 대한 처리를 해야 된다..즉 공간을 매워야 한다*/
-	overflow:hidden;
+	position:relative;
+	height:30px;
 }
 </style>
 <script>
@@ -22,6 +23,8 @@ var title=["리눅스","오라클","servlet","spring","mybatis"];
 //1) 선언과 동시에 할당하는 방법 var arr = ["a","b","c"];
 //2) 명시적 선언 방법  var m = new Array(5);
 var menus=new Array(5);
+var a=0.1;
+var targetH=500;
 
 function init(){
 	wrapper=document.getElementById("wrapper");
@@ -39,10 +42,14 @@ function createMenu(){
 		menu.style.color="#ffdd00";
 		menu.innerText=title[i];
 		menu.style.float="left";
+		menu.style.position="absolute";
+		menu.style.left=150*i+"px";
+
 		//메뉴마다 이벤트 리스너를 장착하자!!!
 		menu.addEventListener("mouseover", function(){
 			//이 메뉴의 배경색을 파란색으로!!
 			this.style.background="blue";
+			setSize();
 		});
 		menu.addEventListener("mouseout", function(){
 			this.style.background="red";
@@ -53,7 +60,11 @@ function createMenu(){
 }
 //메뉴의 높이를 증가시키거나, 감소시키는 함수(감속도 공식으로..)
 function setSize(){
-	menus[3].style.background="green";
+	menus[0].style.background="green";
+
+	//높이를 야금야금...
+	//메뉴높이는  = 현재메뉴높이 + a*(목표지점 - 현제메뉴높이);
+	menus[0].style.height=parseInt(menus[0].style.height)+a*(targetH - parseInt(menus[0].style.height))+"px";
 }
 
 addEventListener("load",function(){
