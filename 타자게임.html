@@ -31,7 +31,10 @@
 #feedback{
 	width:100%;
 	height:150px;
-	background:green;
+	font-size:150px;
+	font-weight:bold;
+	color:red;
+	text-align:center;
 }
 #score{
 	width:100%;
@@ -53,9 +56,12 @@ var word=[
 ];
 var word_area;
 var index=0;//배열내의 몇번째 단어를 보여줄지를 결정하는 전역변수
+var feedback;
 
 function init(){
 	word_area=document.getElementById("word_area");
+	feedback=document.getElementById("feedback");
+
 	showWord();
 	//문서 실행과 동시에 커서를 올려놓자!!
 	var txt=document.getElementById("txt");
@@ -70,8 +76,16 @@ function enter(){
 	var key=event.keyCode;//방금 누른 키에 대한 아스키값
 
 	if(key==13){//엔터쳤다면..
-		index++;
-		showWord();
+		//단어가 일치하면
+		if(word_area.innerText==txt.value){
+			index++;
+			showWord();
+			feedback.innerText="O";
+		}else{
+			feedback.innerText="X";
+		}
+		//기존에 입력한 단어를 다시 초기화!!
+		txt.value="";
 	}
 }
 
