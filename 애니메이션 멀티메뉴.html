@@ -24,12 +24,14 @@ var title=["리눅스","오라클","servlet","spring","mybatis"];
 //2) 명시적 선언 방법  var m = new Array(5);
 var menus=new Array(5);
 var a=0.1;
-var targetH=500;
+var targetH=30;
+var currentMenu;//지금 선택한 메뉴~
 
 function init(){
 	wrapper=document.getElementById("wrapper");
 	createMenu();
-	setSize();//누가 변할까??
+	//setSize();//누가 변할까??
+	setInterval("setSize()",10);
 }
 function createMenu(){
 	for(var i=0;i<title.length;i++){
@@ -46,13 +48,16 @@ function createMenu(){
 		menu.style.left=150*i+"px";
 
 		//메뉴마다 이벤트 리스너를 장착하자!!!
-		menu.addEventListener("mouseover", function(){
+		menu.addEventListener("click", function(){
 			//이 메뉴의 배경색을 파란색으로!!
 			this.style.background="blue";
-			setSize();
+			targetH=500;
+			alert("저는 몇번째 입니다.");
+			currentMenu=this;
 		});
 		menu.addEventListener("mouseout", function(){
 			this.style.background="red";
+			//targetH=30;
 		});
 
 		wrapper.appendChild(menu);
@@ -60,11 +65,16 @@ function createMenu(){
 }
 //메뉴의 높이를 증가시키거나, 감소시키는 함수(감속도 공식으로..)
 function setSize(){
-	menus[0].style.background="green";
+	//0번째 메뉴에 대해서만 에니메이션 작동하지 말고, 선택한 메뉴에 대해서
+	//감속도 에니메이션을 적용시키자!!
 
-	//높이를 야금야금...
-	//메뉴높이는  = 현재메뉴높이 + a*(목표지점 - 현제메뉴높이);
-	menus[0].style.height=parseInt(menus[0].style.height)+a*(targetH - parseInt(menus[0].style.height))+"px";
+	//클릭했을때만, 즉 currentMenu값이 undefined 가 아니면
+	if(currentMenu != undefined){
+		currentMenu.style.background="green";
+		//높이를 야금야금...
+		//메뉴높이는  = 현재메뉴높이 + a*(목표지점 - 현제메뉴높이);
+		currentMenu.style.height=parseInt(currentMenu.style.height)+a*(targetH - parseInt(currentMenu.style.height))+"px";
+	}
 }
 
 addEventListener("load",function(){
