@@ -38,12 +38,54 @@
 	height:100px;
 }
 </style>
+<script>
+var word=[
+	"광화문",
+	"백두산",
+	"그림자",
+	"프랑스",
+	"3호선",
+	"컴퓨터",
+	"해왕성",
+	"김치찌게",
+	"자동차",
+	"오라클"
+];
+var word_area;
+var index=0;//배열내의 몇번째 단어를 보여줄지를 결정하는 전역변수
+
+function init(){
+	word_area=document.getElementById("word_area");
+	showWord();
+	//문서 실행과 동시에 커서를 올려놓자!!
+	var txt=document.getElementById("txt");
+	txt.focus();//커서 올리기!!
+}
+//단어가 보여질 영역에 문자열 출력하는 함수!!
+function showWord(){
+	word_area.innerText=word[index];		
+}
+//입력한 단어와 상단에 보여지는 단어를 비교하여, 알맞는처리
+function enter(){
+	var key=event.keyCode;//방금 누른 키에 대한 아스키값
+
+	if(key==13){//엔터쳤다면..
+		index++;
+		showWord();
+	}
+}
+
+addEventListener("load", function(){
+	init();
+});
+
+</script>
 </head>
 <body>
 	<div class="wrapper">
-		<h1 id="word_area">광화문</h1>
+		<h1 id="word_area"></h1>
 		<div class="input_area">
-			<input type="text"/>
+			<input type="text" id="txt" onKeyUp="enter()"/>
 		</div>
 		<div id="feedback"></div>
 		<div id="score"></div>
