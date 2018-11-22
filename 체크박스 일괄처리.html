@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>체크박스 일괄처리</title>
+<script>
+function checkAll(){
+	//첫번째 체크박스의 상태를 체크상태로 적용해본다
+	var ch=document.getElementsByName("ch");
+	var king=document.getElementById("king");
+	
+	//alert(ch.checked);
+	for(var i=0;i<ch.length;i++){
+		ch[i].checked=king.checked;
+	}
+}
+</script>
+</head>
+<body>
+	대표<input type="checkbox" id="king" onClick="checkAll()"/>
+	<p/>
+
+	<input type="checkbox" name="ch"/>
+	<input type="checkbox" name="ch"/>
+	<input type="checkbox" name="ch"/>
+</body>
+</html>
+
+
+
+
+

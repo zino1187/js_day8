@@ -39,37 +39,42 @@
 #score{
 	width:100%;
 	height:100px;
+	background:#000;
+	color:#fff;
+	font-size:50px;
+	text-align:center;
 }
 </style>
 <script>
 var word=[
-	"광화문",
-	"백두산",
-	"그림자",
-	"프랑스",
-	"3호선",
-	"컴퓨터",
-	"해왕성",
-	"김치찌게",
-	"자동차",
-	"오라클"
+	"쥐",
+	"말",
+	"개"
 ];
 var word_area;
 var index=0;//배열내의 몇번째 단어를 보여줄지를 결정하는 전역변수
 var feedback;
+var score;
+var n=0;
 
 function init(){
 	word_area=document.getElementById("word_area");
 	feedback=document.getElementById("feedback");
+	score=document.getElementById("score");
 
 	showWord();
 	//문서 실행과 동시에 커서를 올려놓자!!
 	var txt=document.getElementById("txt");
 	txt.focus();//커서 올리기!!
+	setScore();//점수 출력!!!
 }
 //단어가 보여질 영역에 문자열 출력하는 함수!!
 function showWord(){
-	word_area.innerText=word[index];		
+	if(index<word.length){
+		word_area.innerText=word[index];			
+	}else{
+		word_area.innerText="게임종료";			
+	}
 }
 //입력한 단어와 상단에 보여지는 단어를 비교하여, 알맞는처리
 function enter(){
@@ -78,15 +83,23 @@ function enter(){
 	if(key==13){//엔터쳤다면..
 		//단어가 일치하면
 		if(word_area.innerText==txt.value){
-			index++;
-			showWord();
-			feedback.innerText="O";
+			if(index<word.length){
+				index++;
+				n+=10;//10증가 
+				showWord();//그 다음단어
+				setScore();	
+			}
+			feedback.innerText="O";	
 		}else{
 			feedback.innerText="X";
 		}
 		//기존에 입력한 단어를 다시 초기화!!
 		txt.value="";
 	}
+}
+//점수처리 함수 
+function setScore(){
+	score.innerText=n;
 }
 
 addEventListener("load", function(){
