@@ -48,16 +48,15 @@ function createMenu(){
 		menu.style.left=150*i+"px";
 
 		//메뉴마다 이벤트 리스너를 장착하자!!!
-		menu.addEventListener("click", function(){
+		menu.addEventListener("mouseover", function(){
 			//이 메뉴의 배경색을 파란색으로!!
 			this.style.background="blue";
 			targetH=500;
-			alert("저는 몇번째 입니다.");
 			currentMenu=this;
 		});
 		menu.addEventListener("mouseout", function(){
 			this.style.background="red";
-			//targetH=30;
+			targetH=30;
 		});
 
 		wrapper.appendChild(menu);

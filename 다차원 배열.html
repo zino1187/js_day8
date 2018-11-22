@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>다차원 배열</title>
+<script>
+var fruit=["사과","포도","오렌지"];
+var car=["BMW","Audi","Benz"];
+var skill=["java","Node.js","Oracle"];
+
+//큰상자 정의한다, 아직까지는 1차원이다.,하지만, 이상자에
+//다른 배열이 들어가는 순간 다차원배열이 된다...
+//1차원은 배열은 = for문과 친하다..
+//2차원은 배열은 = 이중 for문과 친하다...
+var box=new Array();
+box[0] = fruit;
+box[1] = car;
+box[2] = skill;
+
+//0번째 층 출력
+for(var a=0;a<3;a++){
+	for(var i=0;i<3;i++){
+		document.write(box[a][i]);
+	}
+	document.write("<br/>");
+}
+</script>
+</head>
+<body>
+
+</body>
+</html>
