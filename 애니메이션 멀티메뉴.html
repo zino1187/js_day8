@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>애니메이션 멀티메뉴</title>
+<style>
+#wrapper{
+	text-align:center;
+	margin:auto;
+	width:750px;
+	background:black;
+	/*자식 요소가 float으로 떠버리면, 부모에 반드시 overflow 속성
+	을 적용하여 빈자리에 대한 처리를 해야 된다..즉 공간을 매워야 한다*/
+	overflow:hidden;
+}
+</style>
+<script>
+var wrapper;
+var title=["리눅스","오라클","servlet","spring","mybatis"];
+
+function init(){
+	wrapper=document.getElementById("wrapper");
+	createMenu();
+}
+function createMenu(){
+	for(var i=0;i<title.length;i++){
+		var menu=document.createElement("div");
+		menu.style.width=150+"px";
+		menu.style.height=30+"px";
+		menu.style.background="red";
+		menu.style.color="#ffdd00";
+		menu.innerText=변수;
+		menu.style.float="left";
+		wrapper.appendChild(menu);
+	}
+}
+addEventListener("load",function(){
+	init();
+});
+</script>
+</head>
+<body>
+	<div id="wrapper"></div>
+</body>
+</html>
