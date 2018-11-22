@@ -17,23 +17,45 @@
 <script>
 var wrapper;
 var title=["리눅스","오라클","servlet","spring","mybatis"];
+//배열은 자바스크립트에서 내장객체로 지원되는데, 배열을 생성하는 방법
+//은 크게 2가지 방법이 있다.
+//1) 선언과 동시에 할당하는 방법 var arr = ["a","b","c"];
+//2) 명시적 선언 방법  var m = new Array(5);
+var menus=new Array(5);
 
 function init(){
 	wrapper=document.getElementById("wrapper");
 	createMenu();
+	setSize();//누가 변할까??
 }
 function createMenu(){
 	for(var i=0;i<title.length;i++){
-		var menu=document.createElement("div");
+		menu=document.createElement("div");
+		menus[i]=menu;//각 메뉴를 배열에 담아놓자!!
+		//왜?? 나중에 호출하기 위해...
 		menu.style.width=150+"px";
 		menu.style.height=30+"px";
 		menu.style.background="red";
 		menu.style.color="#ffdd00";
-		menu.innerText=변수;
+		menu.innerText=title[i];
 		menu.style.float="left";
+		//메뉴마다 이벤트 리스너를 장착하자!!!
+		menu.addEventListener("mouseover", function(){
+			//이 메뉴의 배경색을 파란색으로!!
+			this.style.background="blue";
+		});
+		menu.addEventListener("mouseout", function(){
+			this.style.background="red";
+		});
+
 		wrapper.appendChild(menu);
 	}
 }
+//메뉴의 높이를 증가시키거나, 감소시키는 함수(감속도 공식으로..)
+function setSize(){
+	menus[3].style.background="green";
+}
+
 addEventListener("load",function(){
 	init();
 });
